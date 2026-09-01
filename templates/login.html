@@ -1,36 +1,343 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Login Detector</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f172a, #1e3a5f);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+        }
+
+        .container {
+            width: 900px;
+            max-width: 95%;
+            display: flex;
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        /* LEFT SIDE */
+
+        .info-section {
+            width: 50%;
+            background: linear-gradient(160deg, #0f172a, #1d4ed8);
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .info-section h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .info-section p {
+            color: #dbeafe;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .security-box {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 18px;
+            margin-top: 10px;
+        }
+
+        .security-box h3 {
+            margin-bottom: 8px;
+        }
+
+        .security-box p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        /* RIGHT SIDE */
+
+        .login-section {
+            width: 50%;
+            padding: 50px;
+            color: #1e293b;
+        }
+
+        .login-section h2 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #2563eb;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        /* STATUS */
+
+        .status {
+            margin-top: 25px;
+            padding: 15px;
+            border-radius: 10px;
+            background: #f1f5f9;
+        }
+
+        .status-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .protected {
+            color: #16a34a;
+        }
+
+        .attempts {
+            margin-top: 8px;
+            color: #475569;
+        }
+
+        .warning {
+            margin-top: 20px;
+            padding: 12px;
+            background: #fff7ed;
+            color: #c2410c;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .success {
+            margin-top: 20px;
+            padding: 12px;
+            background: #dcfce7;
+            color: #166534;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .error {
+            margin-top: 20px;
+            padding: 12px;
+            background: #fee2e2;
+            color: #991b1b;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 25px;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .container {
+                flex-direction: column;
+            }
+
+            .info-section,
+            .login-section {
+                width: 100%;
+            }
+
+            .info-section {
+                padding: 35px;
+            }
+
+            .login-section {
+                padding: 35px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>Login Detector</h1>
+    <div class="container">
 
-    <form method="POST">
+        <!-- LEFT SIDE -->
 
-        <label>Username:</label>
-        <input type="text" name="username" required>
+        <div class="info-section">
 
-        <br><br>
+            <div class="logo">🛡️</div>
 
-        <label>Password:</label>
-        <input type="password" name="password" required>
+            <h1>Login Detector</h1>
 
-        <br><br>
+            <p>
+                A simple security monitoring system that detects
+                repeated failed login attempts and identifies
+                suspicious activity.
+            </p>
 
-        <button type="submit">Login</button>
+            <div class="security-box">
 
-    </form>
-<h3>{{ message }}</h3>
-<h2>Login History</h2>
+                <h3>🔐 Security Monitoring</h3>
 
-<ul>
-    {% for attempt in history %}
-        <li>{{ attempt }}</li>
-    {% endfor %}
-</ul>
+                <p>
+                    The system monitors login attempts and protects
+                    the application against repeated unsuccessful
+                    login attempts.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="login-section">
+
+            <h2>Welcome Back</h2>
+
+            <p class="subtitle">
+                Sign in to access your account
+            </p>
+
+
+            <form method="POST">
+
+                <label for="username">Username</label>
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Enter your username"
+                    required
+                >
+
+
+                <label for="password">Password</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                >
+
+
+                <button type="submit">
+                    🔐 Login
+                </button>
+
+            </form>
+
+
+            {% if message %}
+
+                {% if "Successful" in message %}
+
+                    <div class="success">
+                        ✅ {{ message }}
+                    </div>
+
+                {% else %}
+
+                    <div class="error">
+                        ⚠️ {{ message }}
+                    </div>
+
+                {% endif %}
+
+            {% endif %}
+
+
+            <div class="status">
+
+                <div class="status-title">
+                    🛡️ Security Status
+                </div>
+
+                <div class="protected">
+                    🟢 System Protected
+                </div>
+
+                <div class="attempts">
+                    Login monitoring is active
+                </div>
+
+            </div>
+
+
+            <div class="warning">
+                ⚠️ Repeated failed login attempts may trigger
+                suspicious activity detection.
+            </div>
+
+
+            <div class="footer">
+                Login Detector • Flask • Docker • Jenkins
+            </div>
+
+        </div>
+
+    </div>
 
 </body>
 </html>
