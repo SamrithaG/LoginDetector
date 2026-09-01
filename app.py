@@ -1,16 +1,22 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
+# Correct login credentials
+CORRECT_USERNAME = "admin"
+CORRECT_PASSWORD = "1234"
+
+# Track failed login attempts
 failed_attempts = 0
-blocked = False
-login_history = []
+
+# Maximum allowed failed attempts
+MAX_ATTEMPTS = 3
 
 
 @app.route("/", methods=["GET", "POST"])
 def login():
 
-    global failed_attempts, blocked
+    global failed_attempts
 
     message = ""
 
@@ -19,43 +25,51 @@ def login():
         username = request.form["username"]
         password = request.form["password"]
 
-        if blocked:
-            message = "🚨 Suspicious Activity Detected! Account Blocked."
-            login_history.append(f"{username} → 🚨 Suspicious")
+        # Check whether account is already blocked
+        if failed_attempts >= MAX_ATTEMPTS:
+            message = "Suspicious activity detected! Account is temporarily blocked."
+            return render_template("login.html", message=message)
 
-        elif username == "admin" and password == "1234":
-            message = "✅ Login Successful!"
-            login_history.append(f"{username} → ✅ Successful")
+        # Check login credentials
+        if username == CORRECT_USERNAME and password == CORRECT_PASSWORD:
+
+            # Reset failed attempts after successful login
             failed_attempts = 0
 
+            # Redirect user to dashboard
+            return redirect(url_for("dashboard"))
+
         else:
+
+            # Increase failed attempt counter
             failed_attempts += 1
-            login_history.append(f"{username} → ❌ Failed")
 
-            if failed_attempts >= 3:
-                blocked = True
-                message = "🚨 Suspicious Activity Detected! Account Blocked."
-                login_history.append(f"{username} → 🚨 Suspicious")
+            if failed_attempts >= MAX_ATTEMPTS:
+
+                message = "Suspicious activity detected! Account is blocked."
+
             else:
-                message = f"❌ Invalid Login! Failed Attempts: {failed_attempts}"
 
-    return render_template(
-        "login.html",
-        message=message,
-        history=login_history
-    )
+                remaining = MAX_ATTEMPTS - failed_attempts
+
+                message = (
+                    f"Invalid username or password. "
+                    f"{remaining} attempt(s) remaining."
+                )
+
+    return render_template("login.html", message=message)
 
 
-@app.route("/reset")
-def reset():
+@app.route("/dashboard")
+def dashboard():
 
-    global failed_attempts, blocked, login_history
+    return render_template("dashboard.html")
 
-    failed_attempts = 0
-    blocked = False
-    login_history = []
 
-    return "Login Detector has been reset. Go back to the login page."
+@app.route("/logout")
+def logout():
+
+    return redirect(url_for("login"))
 
 
 if __name__ == "__main__":

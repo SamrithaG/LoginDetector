@@ -1,0 +1,395 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SecureBank - Banking Portal</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        /* HEADER */
+
+        .header {
+            background: #0f172a;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .secure {
+            font-size: 13px;
+            color: #86efac;
+            margin-top: 4px;
+        }
+
+        .logout {
+            text-decoration: none;
+            color: white;
+            background: #dc2626;
+            padding: 10px 18px;
+            border-radius: 7px;
+            font-size: 14px;
+        }
+
+        .logout:hover {
+            background: #b91c1c;
+        }
+
+        /* MAIN */
+
+        .container {
+            width: 1000px;
+            max-width: 92%;
+            margin: 40px auto;
+        }
+
+        .welcome {
+            margin-bottom: 25px;
+        }
+
+        .welcome h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .welcome p {
+            color: #64748b;
+        }
+
+        /* BALANCE */
+
+        .balance-card {
+            background: linear-gradient(135deg, #1d4ed8, #2563eb);
+            color: white;
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .balance-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .balance {
+            font-size: 38px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .account-number {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* ACTIONS */
+
+        .actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .action {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .action-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .action h3 {
+            margin-bottom: 6px;
+        }
+
+        .action p {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        /* TRANSACTIONS */
+
+        .transactions {
+            background: white;
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .transactions h2 {
+            margin-bottom: 18px;
+        }
+
+        .transaction {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .transaction:last-child {
+            border-bottom: none;
+        }
+
+        .transaction-name {
+            font-weight: bold;
+        }
+
+        .transaction-date {
+            color: #94a3b8;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .debit {
+            color: #dc2626;
+            font-weight: bold;
+        }
+
+        .credit {
+            color: #16a34a;
+            font-weight: bold;
+        }
+
+        /* SECURITY */
+
+        .security {
+            margin-top: 25px;
+            background: #ecfdf5;
+            border: 1px solid #bbf7d0;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .security h3 {
+            color: #166534;
+            margin-bottom: 6px;
+        }
+
+        .security p {
+            color: #166534;
+            font-size: 14px;
+        }
+
+        /* FOOTER */
+
+        .footer {
+            text-align: center;
+            margin: 30px 0;
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .actions {
+                grid-template-columns: 1fr;
+            }
+
+            .balance {
+                font-size: 30px;
+            }
+
+            .header {
+                padding: 18px 5%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div>
+            <div class="logo">🏦 SecureBank</div>
+            <div class="secure">🔒 Secure Online Banking</div>
+        </div>
+
+        <a href="/logout" class="logout">
+            Logout
+        </a>
+
+    </div>
+
+
+    <!-- MAIN CONTENT -->
+
+    <div class="container">
+
+        <div class="welcome">
+
+            <h1>Welcome back, Admin! 👋</h1>
+
+            <p>
+                Here's your account overview.
+            </p>
+
+        </div>
+
+
+        <!-- BALANCE -->
+
+        <div class="balance-card">
+
+            <div class="balance-label">
+                Available Balance
+            </div>
+
+            <div class="balance">
+                ₹45,250.00
+            </div>
+
+            <div class="account-number">
+                Savings Account •••• 4582
+            </div>
+
+        </div>
+
+
+        <!-- ACTIONS -->
+
+        <div class="actions">
+
+            <div class="action">
+
+                <div class="action-icon">💸</div>
+
+                <h3>Transfer</h3>
+
+                <p>
+                    Transfer money securely
+                </p>
+
+            </div>
+
+
+            <div class="action">
+
+                <div class="action-icon">📥</div>
+
+                <h3>Deposit</h3>
+
+                <p>
+                    Add money to your account
+                </p>
+
+            </div>
+
+
+            <div class="action">
+
+                <div class="action-icon">📄</div>
+
+                <h3>History</h3>
+
+                <p>
+                    View transaction history
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- TRANSACTIONS -->
+
+        <div class="transactions">
+
+            <h2>Recent Transactions</h2>
+
+
+            <div class="transaction">
+
+                <div>
+
+                    <div class="transaction-name">
+                        🛒 Online Purchase
+                    </div>
+
+                    <div class="transaction-date">
+                        01 September 2026
+                    </div>
+
+                </div>
+
+                <div class="debit">
+                    - ₹850.00
+                </div>
+
+            </div>
+
+
+            <div class="transaction">
+
+                <div>
+
+                    <div class="transaction-name">
+                        💰 Salary Credit
+                    </div>
+
+                    <div class="transaction-date">
+                        31 August 2026
+                    </div>
+
+                </div>
+
+                <div class="credit">
+                    + ₹25,000.00
+                </div>
+
+            </div>
+
+
+            <div class="transaction">
+
+                <div>
+
+                    <div class="transaction-name">
+                        🛍️ Shopping
+                    </div>
+
+                    <div class="transaction-date">
+                        29 August 2026
+                    </div>
+
+               
+```
